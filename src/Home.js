@@ -17,7 +17,9 @@ export default class Home extends Component {
 
         <div className="col-md-6">
           <h2>Enter Transaction</h2>
-          <label>Coins</label>
+          <label>Coin</label>
+          <input type="text" name="coin" />
+          <label>Amount</label>
           <input type="text" name="amount" onChange={this.props.onInputChange} value={this.props.globalState.cryptoAmount} />
           <label>Date</label>
           <DatePicker selected={this.props.globalState.date} onChange={this.props.handleDateChange} />
