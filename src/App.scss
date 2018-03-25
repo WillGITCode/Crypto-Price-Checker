@@ -1,0 +1,109 @@
+@import url( 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700');
+@import "reset";
+@import "variables";
+@import "grid";
+@import "datepicker";
+@import "home";
+@import "results";
+
+html{
+  overflow: auto;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #0f0449;
+  overflow: auto;
+  height: 100%;
+}
+
+header{
+  padding: 18px 0;
+  overflow: auto;
+
+  .logo{
+    display: inline-block;
+    float: left;
+    color: whitesmoke;
+  }
+
+  .menu{
+    display: inline-block;
+    float: right;
+    color: whitesmoke;
+
+    a{
+      color: whitesmoke;
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      border: 1px solid #304ffe;
+      transition: all 0.3 ease-in-out;
+
+      &:hover{
+        background: #304ffe;
+      }
+    }
+  }
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 50px;
+}
+
+.home {
+  width: 100% !important; 
+  height: 100% !important;
+  text-align: center;
+
+  img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .Aligner {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Aligner-item {
+    max-width: 50%;
+  }
+
+  .menu {
+    ul {
+      li {
+        padding: 10px 15px;
+        display: inline-block;
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .version-num {
+    background: #E8E8E8;
+    border-radius: 4px;
+    padding: 7px 15px;
+    display: inline-block;
+    font-size: 12px;
+    margin: 10px 0 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #30395C;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: #43D4D6;
+    }
+  }
+}
