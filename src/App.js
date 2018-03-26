@@ -12,7 +12,8 @@ class App extends Component {
       name: 'William',
       location: 'Home',
       date: moment(),
-      data: '',
+      data: {},
+      coin: 'BTC',
       cryptoAmount: 1,
       status: '',
       totalStatus: ''
@@ -21,14 +22,17 @@ class App extends Component {
     this.handleDateChange = this.handleDateChange.bind(this)
     this.apiCall = this.apiCall.bind(this)
     this.onInputChange = this.onInputChange.bind(this)
+    this.onCoinChange = this.onCoinChange.bind(this)
     this.goBack = this.goBack.bind(this)
   }
 
   componentWillMount(){
-    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=BTC&tsyms=BTC,USD,EUR&ts=${moment().unix()}&extraParams=Crypto Gainz`)
+    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${this.state.coin}&tsyms=BTC,USD,EUR&ts=${moment().unix()}&extraParams=Crypto Gainz`)
       .then((response) => { //arrow function to preserve this
+        let res = response.data
+        let currentCoin = this.state.coin
         this.setState({
-          btcToday: response.data.BTC
+          coinPriceToday: res[currentCoin]
         }, () => {
           console.log(this.state);
         })
@@ -41,7 +45,13 @@ class App extends Component {
   routingSystem(){
     switch(this.state.location){
       case 'Home':
-        return <Home handleDateChange={this.handleDateChange} globalState={this.state} onInputChange={this.onInputChange} apiCall={this.apiCall} />
+        return <Home 
+            handleDateChange={this.handleDateChange} 
+            globalState={this.state} 
+            onInputChange={this.onInputChange} 
+            onCoinChange={this.onCoinChange} 
+            apiCall={this.apiCall} 
+          />
         break;
       case 'Results':
         return <Results globalState={this.state} goBack={this.goBack}/>
@@ -63,16 +73,24 @@ class App extends Component {
     })
   }
 
+  onCoinChange(event){
+    this.setState({
+      coin: event.target.value
+    })
+  }
+
   apiCall(){
-    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=BTC&tsyms=BTC,USD,EUR&ts=${this.state.date.unix()}&extraParams=Crypto Gainz`)
+    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${this.state.coin}&tsyms=BTC,USD,EUR&ts=${this.state.date.unix()}&extraParams=Crypto Gainz`)
       .then((response) =>{ //arrow function to preserve this
+        let res = response.data
+        let currentCoin = this.state.coin
         this.setState({
-          data: response.data.BTC
+          data: res[currentCoin]
         }, () => {
           const costPrice = this.state.data.USD
           var newCP = (this.state.cryptoAmount * 100)
           newCP = (newCP * costPrice) / 100
-          const sellingPrice = this.state.btcToday.USD
+          const sellingPrice = this.state.coinPriceToday.USD
           var newSP = (this.state.cryptoAmount * 100)
           newSP = (newSP * sellingPrice) / 100
 
@@ -121,9 +139,11 @@ class App extends Component {
 
   goBack(){
     this.setState({
+      name: 'William',
       location: 'Home',
       date: moment(),
-      data: '',
+      data: {},
+      coin: 'BTC',
       cryptoAmount: 1,
       status: '',
       totalStatus: ''

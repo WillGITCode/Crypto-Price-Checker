@@ -2,12 +2,7 @@ import React, { Component} from 'react'
 import DatePicker from 'react-datepicker'
 
 export default class Home extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      name: 'William'
-    }
-  }
+  
   render () {
     return (<section id="home">
       <div className="container">
@@ -18,7 +13,12 @@ export default class Home extends Component {
         <div className="col-md-6">
           <h2>Enter Transaction</h2>
           <label>Coin</label>
-          <input type="text" name="coin" />
+          <input 
+            type="text" 
+            name="coin" 
+            onChange={this.props.onCoinChange} 
+            value={this.props.globalState.coin}
+             />
           <label>Amount</label>
           <input type="text" name="amount" onChange={this.props.onInputChange} value={this.props.globalState.cryptoAmount} />
           <label>Date</label>
