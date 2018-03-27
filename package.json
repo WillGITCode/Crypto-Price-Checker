@@ -5,6 +5,7 @@
   "description": "cryto coin historical price checker",
   "dependencies": {
     "axios": "^0.18.0",
+    "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "node-sass-chokidar": "^1.2.1",
     "react": "^16.2.0",
@@ -14,7 +15,7 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-"watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

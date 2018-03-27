@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
-import Home from './Home.js';
-import Results from './Results.js';
+import Home from './Home.js'
+import Results from './Results.js'
 import moment from 'moment'
 import axios from 'axios'
 import './App.css';
@@ -33,14 +33,16 @@ class App extends Component {
         let currentCoin = this.state.coin
         this.setState({
           coinPriceToday: res[currentCoin]
-        }, () => {
-          console.log(this.state);
-        })
+      }, () => {
+        console.log(this.state);
       })
+    })
       .catch(function (err) {
         console.log(err);
         });
   }
+
+  
 
   routingSystem(){
     switch(this.state.location){
@@ -74,9 +76,21 @@ class App extends Component {
   }
 
   onCoinChange(event){
-    this.setState({
-      coin: event.target.value
-    })
+    event.persist()
+    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${event.target.value}&tsyms=BTC,USD,EUR&ts=${moment().unix()}&extraParams=Crypto Gainz`)
+      .then((response) => { //arrow function to preserve this
+        let res = response.data
+        let currentCoin = event.target.value
+        this.setState({
+          coinPriceToday: res[currentCoin],
+          coin: currentCoin
+        }, () => {
+          console.log(this.state);
+        })
+      })
+      .catch(function (err) {
+        console.log(err);
+        });   
   }
 
   apiCall(){
@@ -91,14 +105,20 @@ class App extends Component {
           var newCP = (this.state.cryptoAmount * 100)
           newCP = (newCP * costPrice) / 100
           const sellingPrice = this.state.coinPriceToday.USD
+          console.log(this.state.coinPriceToday)
           var newSP = (this.state.cryptoAmount * 100)
           newSP = (newSP * sellingPrice) / 100
+
+          console.log(costPrice)
+          console.log(newCP)
+          console.log(sellingPrice)
+          console.log(newSP)
 
           if(newCP < newSP){
             var gain = newSP - newCP
             var gainPercent = (gain/newCP) * 100
             gainPercent = gainPercent.toFixed(2)
-            console.log(`profit percent is ${gainPercent}`)
+            //console.log(`profit percent is ${gainPercent}`)
             this.setState({
               location: 'Results',
               status: 'gain',
@@ -115,7 +135,7 @@ class App extends Component {
             var loss = newCP - newSP
             var lossPercent = (loss/newCP) * 100
             lossPercent = lossPercent.toFixed(2)
-            console.log(`loss percent is ${lossPercent}`)
+            //console.log(`loss percent is ${lossPercent}`)
             this.setState({
               location: 'Results',
               status: 'loss',
@@ -129,7 +149,7 @@ class App extends Component {
               }
             }, () => console.log(this.state))
           }
-          console.log(`${this.state.cryptoAmount} bitcoin newSP: ${newSP}, sellingPrice: ${sellingPrice}, newCP: ${newCP}, costPrice: ${costPrice}`)
+          //console.log(`${this.state.cryptoAmount} bitcoin newSP: ${newSP}, sellingPrice: ${sellingPrice}, newCP: ${newCP}, costPrice: ${costPrice}`)
         })
       })
       .catch(function (err) {

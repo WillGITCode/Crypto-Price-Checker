@@ -17,7 +17,7 @@ export default class Home extends Component {
             type="text" 
             name="coin" 
             onChange={this.props.onCoinChange} 
-            value={this.props.globalState.coin}
+            defaultValue={this.props.globalState.coin}
              />
           <label>Amount</label>
           <input type="text" name="amount" onChange={this.props.onInputChange} value={this.props.globalState.cryptoAmount} />
