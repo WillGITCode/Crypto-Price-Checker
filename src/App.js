@@ -3,7 +3,7 @@ import Home from './Home.js'
 import Results from './Results.js'
 import moment from 'moment'
 import axios from 'axios'
-import './App.css';
+import './App.css'
 
 class App extends Component {
   constructor (props) {
@@ -75,12 +75,13 @@ class App extends Component {
     })
   }
 
-  onCoinChange(event){
-    event.persist()
-    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${event.target.value}&tsyms=BTC,USD,EUR&ts=${moment().unix()}&extraParams=Crypto Gainz`)
+  onCoinChange(event) {
+    // event.persist()
+    const e = event.target.value
+    axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${e}&tsyms=BTC,USD,EUR&ts=${moment().unix()}&extraParams=Crypto Gainz`)
       .then((response) => { //arrow function to preserve this
         let res = response.data
-        let currentCoin = event.target.value
+        let currentCoin = e.toUpperCase()
         this.setState({
           coinPriceToday: res[currentCoin],
           coin: currentCoin
@@ -90,7 +91,7 @@ class App extends Component {
       })
       .catch(function (err) {
         console.log(err);
-        });   
+        }); 
   }
 
   apiCall(){
@@ -105,14 +106,8 @@ class App extends Component {
           var newCP = (this.state.cryptoAmount * 100)
           newCP = (newCP * costPrice) / 100
           const sellingPrice = this.state.coinPriceToday.USD
-          console.log(this.state.coinPriceToday)
           var newSP = (this.state.cryptoAmount * 100)
           newSP = (newSP * sellingPrice) / 100
-
-          console.log(costPrice)
-          console.log(newCP)
-          console.log(sellingPrice)
-          console.log(newSP)
 
           if(newCP < newSP){
             var gain = newSP - newCP

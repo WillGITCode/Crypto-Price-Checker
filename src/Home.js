@@ -1,5 +1,6 @@
 import React, { Component} from 'react'
 import DatePicker from 'react-datepicker'
+import { Debounce } from 'react-throttle'
 
 export default class Home extends Component {
   
@@ -13,12 +14,16 @@ export default class Home extends Component {
         <div className="col-md-6">
           <h2>Enter Transaction</h2>
           <label>Coin</label>
-          <input 
-            type="text" 
-            name="coin" 
-            onChange={this.props.onCoinChange} 
-            defaultValue={this.props.globalState.coin}
-             />
+          
+          <Debounce time="500" handler="onChange">
+            <input 
+              type="text" 
+              name="coin" 
+              onChange={this.props.onCoinChange} 
+              defaultValue={this.props.globalState.coin}
+              />
+          </Debounce>
+
           <label>Amount</label>
           <input type="text" name="amount" onChange={this.props.onInputChange} value={this.props.globalState.cryptoAmount} />
           <label>Date</label>
