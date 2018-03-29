@@ -1,4 +1,4 @@
-#results{
+#results, #placeholder{
     h1{
         font-size: 4rem;
         font-weight: 100;
@@ -21,6 +21,7 @@
     
     .main-btn{
         color: whitesmoke;
+        background: transparent;
         display: inline-block;
         text-decoration: none;
         padding: 10px 20px;

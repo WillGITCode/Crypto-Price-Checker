@@ -1,12 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import AdSense from 'react-adsense';
-
+import React, { Component } from 'react'
 
 export default class GoogleAd extends Component{
-
-      constructor(props) {
-        super(props);
-      }
 
       componentDidMount(){
         (window.adsbygoogle = window.adsbygoogle || []).push({});

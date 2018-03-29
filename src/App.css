@@ -986,27 +986,28 @@ table {
   #home .react-datepicker__input-container input {
     width: 100%; }
 
-#results h1 {
+#results h1, #placeholder h1 {
   font-size: 4rem;
   font-weight: 100;
   text-align: center;
   color: #07d5fe;
   margin: 30px 0; }
 
-#results h3 {
+#results h3, #placeholder h3 {
   text-align: center;
   font-size: 1.8rem;
   color: whitesmoke;
   margin: 50px 0; }
 
-#results h4 {
+#results h4, #placeholder h4 {
   text-align: center;
   font-size: 1.3rem;
   color: whitesmoke;
   font-weight: 300; }
 
-#results .main-btn {
+#results .main-btn, #placeholder .main-btn {
   color: whitesmoke;
+  background: transparent;
   display: inline-block;
   text-decoration: none;
   padding: 10px 20px;
@@ -1014,9 +1015,9 @@ table {
   border: 1px solid #304ffe;
   transition: all 0.3 ease-in-out;
   margin: 50px 0; }
-  #results .main-btn:hover {
+  #results .main-btn:hover, #placeholder .main-btn:hover {
     background: #304ffe; }
-  #results .main-btn.active {
+  #results .main-btn.active, #placeholder .main-btn.active {
     background: #304ffe; }
 
 .ads {
@@ -1046,15 +1047,17 @@ header {
     display: inline-block;
     float: right;
     color: whitesmoke; }
-    header .menu a {
+    header .menu button {
       color: whitesmoke;
       display: inline-block;
+      background: transparent;
       text-decoration: none;
+      font-size: 1em;
       padding: 10px 20px;
       border-radius: 3px;
       border: 1px solid #304ffe;
       transition: all 0.3 ease-in-out; }
-      header .menu a:hover {
+      header .menu button:hover {
         background: #304ffe; }
 
 h1 {

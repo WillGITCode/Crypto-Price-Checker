@@ -34,10 +34,12 @@ header{
     float: right;
     color: whitesmoke;
 
-    a{
+    button{
       color: whitesmoke;
       display: inline-block;
+      background: transparent;
       text-decoration: none;
+      font-size: 1em;
       padding: 10px 20px;
       border-radius: 3px;
       border: 1px solid #304ffe;

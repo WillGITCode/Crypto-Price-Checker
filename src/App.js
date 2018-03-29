@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import Home from './Home.js'
 import Results from './Results.js'
+import PlaceHolderPage from './PlaceholderPage.js'
 import moment from 'moment'
 import axios from 'axios'
 import './App.css'
@@ -24,6 +25,7 @@ class App extends Component {
     this.onInputChange = this.onInputChange.bind(this)
     this.onCoinChange = this.onCoinChange.bind(this)
     this.goBack = this.goBack.bind(this)
+    this.goToPlaceHolder = this.goToPlaceHolder.bind(this)
   }
 
   componentWillMount(){
@@ -56,7 +58,10 @@ class App extends Component {
           />
         break;
       case 'Results':
-        return <Results globalState={this.state} goBack={this.goBack}/>
+        return <Results globalState={this.state} goBack={this.goBack} goToPlaceHolder={this.goToPlaceHolder} />
+        break;
+      case 'PlaceHolderPage':
+        return <PlaceHolderPage goBack={this.goBack} />
         break;
       default:
         return <Home />
@@ -165,6 +170,12 @@ class App extends Component {
     })
   }
 
+  goToPlaceHolder(){
+    this.setState({
+      location: 'PlaceHolderPage'
+    })
+  }
+
   render () {
     return (<div className='home'>
         <div className="container">
@@ -174,7 +185,7 @@ class App extends Component {
             </div>
 
             <nav className="menu">
-              <a href="#">Register</a>
+            <button className="main-btn" onClick={this.goToPlaceHolder}>Register</button>
             </nav>
           </header>
           
