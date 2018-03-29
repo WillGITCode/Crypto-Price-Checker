@@ -76,12 +76,12 @@ class App extends Component {
   }
 
   onCoinChange(event) {
-    // event.persist()
-    const e = event.target.value
+     //event.persist()
+    const e = event.target.value.toUpperCase()
     axios.get(`https://min-api.cryptocompare.com/data/pricehistorical?fsym=${e}&tsyms=BTC,USD,EUR&ts=${moment().unix()}&extraParams=Crypto Gainz`)
       .then((response) => { //arrow function to preserve this
         let res = response.data
-        let currentCoin = e.toUpperCase()
+        let currentCoin = e
         this.setState({
           coinPriceToday: res[currentCoin],
           coin: currentCoin

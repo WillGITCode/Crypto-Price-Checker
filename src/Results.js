@@ -1,23 +1,17 @@
-import React, { Component} from 'react'
+import React, { Component, PropTypes } from 'react'
+import GoogleAd from './GoogleAd.js'
 
 export default class Results extends Component {
 
-  // componentDidMount(){
-  //   (adsbygoogle = window.adsbygoogle || []).push({});
-  // }
-  
+
+
   render () {
     const {percent, newCP, newSP} = this.props.globalState.totalStatus
     return (<section id="results">
       <div className="container">
         <div className="col-md-12">
           <div className="ads">
-            <ins className="adsbygoogle"
-                style={{"display": "block"}}
-                data-ad-client="ca-pub-2259939651078522"
-                data-ad-slot="8903129752"
-                data-ad-format="auto">
-            </ins>
+            <GoogleAd />
           </div>
         </div>
         <div className="col-md-12">
@@ -29,12 +23,7 @@ export default class Results extends Component {
         </div>
         <div className="col-md-12">
           <div className="ads">
-            <ins className="adsbygoogle"
-                style={{"display": "block"}}
-                data-ad-client="ca-pub-2259939651078522"
-                data-ad-slot="8903129752"
-                data-ad-format="auto">
-            </ins>
+            <GoogleAd />
           </div>
         </div>
       </div>

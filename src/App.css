@@ -1005,11 +1005,6 @@ table {
   color: whitesmoke;
   font-weight: 300; }
 
-#results .ads {
-  height: 90px;
-  width: 100%;
-  margin: 50px auto; }
-
 #results .main-btn {
   color: whitesmoke;
   display: inline-block;
@@ -1023,6 +1018,12 @@ table {
     background: #304ffe; }
   #results .main-btn.active {
     background: #304ffe; }
+
+.ads {
+  height: 90px;
+  width: 100%;
+  margin: 50px auto;
+  background-color: transparent; }
 
 html {
   overflow: auto;
